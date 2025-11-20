@@ -8,7 +8,7 @@ from app.services.summarizer import summarize_file, summarize_text
 router = APIRouter()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "app/templates"))
 
 @router.post("/api/summarize")
 async def summarize(request: Request,

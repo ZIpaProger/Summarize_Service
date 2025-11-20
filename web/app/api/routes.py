@@ -10,7 +10,7 @@ router = APIRouter()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
-@router.post("/summarize")
+@router.post("/api/summarize")
 async def summarize(request: Request,
                     document: UploadFile | None = File(None),
                     text: str | None = Form(None)):
@@ -21,7 +21,4 @@ async def summarize(request: Request,
     else:
         result_text = await summarize_text(text)
 
-    return templates.TemplateResponse(
-        "response.html",
-        {"request": request, "summarized_text": result_text}
-    )
+    return JSONResponse({"summarized_text": result_text})
